@@ -2,3 +2,10 @@ html,
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.container {
+  margin: 80px auto 0 auto;
+  max-width: 1200px;
+}
+.nav-container {
+  margin: auto;
+}
