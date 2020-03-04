@@ -19,7 +19,7 @@ class Home extends Component {
             .catch(err => console.log(err))
     }
     render() {
-    let recentMarkUp = this.state.posts ? (this.state.posts.map((post)=> <Post post={post}/>)): (<p>Loading...</p>)
+    let recentMarkUp = this.state.posts ? (this.state.posts.map((post)=> <Post key={post.postId} post={post}/>)): (<p>Loading...</p>)
         return (
             <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>

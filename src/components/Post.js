@@ -1,28 +1,43 @@
 import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
+import Link from 'react-router-dom/Link'
 
 // MUI Stuff
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import { Typography, Link } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
-    cards: {
-        display: 'flex'
+    card: {
+        display: 'flex',
+        marginBottom: 20
+    },
+    image: {
+        minWidth: 200,
+        backgroundSize: 'contain'
+    },
+    content: {
+        padding: 25,
+        objectFit: 'cover'
     }
 }
 
 class Post extends Component {
     render() {
-        const {classes, post: {body, createdAt, userImage, userHandle, postId, likeCount, commentCount}} = this.props 
+        const {
+            classes, 
+            post: {body, createdAt, userImage, userHandle, postId, likeCount, commentCount}
+        } = this.props 
         return (
-            <Card>
-                <CardMedia image={userImage} title="Profile Image" />
-                <CardContent>
-                    <Typography variant="h5" component={Link} to={`/users/${userHandle}`}>{userHandle}</Typography>
+            <Card className={classes.card}>
+                <CardMedia image={userImage} className={classes.image} title="Profile Image" />
+                <CardContent className={classes.content}>
+                    <Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
                     <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
                     <Typography variant="body1" >{body}</Typography>
+                    <Typography variant="subtitle1">{likeCount} likes</Typography>
+                    <Typography variant="subtitle2">{commentCount} comments</Typography>
                 </CardContent>
             </Card> 
         )
