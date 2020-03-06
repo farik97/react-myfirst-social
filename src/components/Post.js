@@ -30,7 +30,7 @@ class Post extends Component {
             post: {body, createdAt, userImage, userHandle, postId, likeCount, commentCount}
         } = this.props 
         return (
-            <Card className={classes.card}>
+            <Card key={postId} className={classes.card}>
                 <CardMedia image={userImage} className={classes.image} title="Profile Image" />
                 <CardContent className={classes.content}>
                     <Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
