@@ -8,7 +8,7 @@ import login from './pages/Login'
 import signup from './pages/Signup'
 import Navbar from './components/Navbar';
 
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import {MuiThemeProvider} from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
 // my theme
