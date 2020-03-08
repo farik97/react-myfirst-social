@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
 import './App.css';
+import themeFile from './util/theme'
 
 // pages
 import home from './pages/Home'
@@ -12,25 +14,21 @@ import {MuiThemeProvider} from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
 // my theme
-const theme = createMuiTheme({
-    palette: {
-      primary: {
-        light: '#58a1e8',
-        main: '#0c73b5',
-        dark: '#004885',
-        contrastText: '#fff',
-      },
-      secondary: {
-        light: '#ffc446',
-        main: '#f49300',
-        dark: '#bb6500',
-        contrastText: '#fff',
-      },
-    },
-    typography: {
-      useNextVariants: true
+const theme = createMuiTheme(themeFile);
+
+let authenticated
+
+const token = localStorage.AppIdToken
+
+if(token) {
+    const decodedToken = jwtDecode(token)
+    if(new Date(decodedToken.exp * 1000) < Date.now()){
+        window.location.href('/login')
+        authenticated = false
+    } else {
+      authenticated = true
     }
-  });
+}
 
 function App() {
   return (
