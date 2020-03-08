@@ -15,36 +15,36 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 const styles = {
     form: {
         textAlign: 'center'
-    },
-    login: {
-        backgroundColor: 'white',
-        padding: '10px 10px 10px 10px',
-        borderRadius: '8px'
-    },
-    icon: {
-        maxHeight: 100,
-        border: '0px',
-        margin: '20px auto 20px auto'
-    },
-    pageTitle: {
-        margin: '10px auto 10px auto'
-    },
-    textField: {
-        margin: '10px auto 10px auto'
-    },
-    button: {
-        marginTop: 20,
-        marginBottom: 10,
-        position: 'relative'
-    },
-    customError: {
-        color: 'red',
-        fontSize: '0.8rem',
-        marginTop: '10px'
-    },
-    progress: {
-        position: 'absolute'
-    }
+      },
+      login: {
+          backgroundColor: '#FFFFFF',
+          padding: '10px 10px 10px 10px',
+          borderRadius: '8px'
+      },
+      icon: {
+          maxHeight: 100,
+          border: '0px',
+          margin: '20px auto 20px auto'
+      },
+      pageTitle: {
+          margin: '10px auto 10px auto'
+      },
+      textField: {
+          margin: '10px auto 10px auto'
+      },
+      button: {
+          marginTop: 20,
+          marginBottom: 10,
+          position: 'relative'
+      },
+      customError: {
+          color: '#FF0000	',
+          fontSize: '0.8rem',
+          marginTop: '10px'
+      },
+      progress: {
+          position: 'absolute'
+      }
 }
 
 class Login extends Component {
@@ -69,6 +69,7 @@ class Login extends Component {
         axios.post('/login', userData)
             .then(res => {
                 console.log(res.data)
+                localStorage.setItem('AppIdToken', `Bearer ${res.data.token}`)
                 this.setState({
                     loading: false
                 })
