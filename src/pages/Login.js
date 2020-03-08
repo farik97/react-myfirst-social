@@ -94,7 +94,7 @@ class Login extends Component {
                 <Grid item sm/>
                 <Grid item className={classes.login} sm>
                     <img className={classes.icon} src={AppIcon} alt="icon image" />
-                    <Typography variant="h5" color="textPrimary" className={classes.pageTitle}>
+                    <Typography variant="h4" color="textPrimary" className={classes.pageTitle}>
                         Login
                     </Typography>
                     <form noValidate onSubmit={this.handleSubmit}>
