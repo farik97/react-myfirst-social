@@ -99,16 +99,16 @@ class Login extends Component {
                     </Typography>
                     <form noValidate onSubmit={this.handleSubmit}>
                         <TextField id="email" name="email" type="email" label="Email" className={classes.textField} helperText={errors.email} error={errors.email ? true : false}
-                         value={this.state.email} onChange={this.handleChange} fullWidth />
-                         <TextField id="password" name="password" type="password" label="Password" className={classes.textField} helperText={errors.password} error={errors.password ? true : false}
-                         value={this.state.password} onChange={this.handleChange} fullWidth />
-                         {errors.general && (
-                         <Typography variant="body2" className={classes.customError}>
-                             {errors.general}
-                         </Typography>)}
-                         <Button disabled={loading} type="submit" variant="contained" color="primary" className={classes.button}>Login{loading && (<CircularProgress size={30} className={classes.progress}/>)}</Button>
-                         <br />
-                         <small>Don't have an account? Sign Up <Link to="/signup">here</Link></small>
+                        value={this.state.email} onChange={this.handleChange} fullWidth />
+                        <TextField id="password" name="password" type="password" label="Password" className={classes.textField} helperText={errors.password} error={errors.password ? true : false}
+                        value={this.state.password} onChange={this.handleChange} fullWidth />
+                        {errors.general && (
+                        <Typography variant="body2" className={classes.customError}>
+                            {errors.general}
+                        </Typography>)}
+                        <Button disabled={loading} type="submit" variant="contained" color="primary" className={classes.button}>Login{loading && (<CircularProgress size={30} className={classes.progress}/>)}</Button>
+                        <br />
+                        <small>Don't have an account? Sign Up <Link to="/signup">here</Link></small>
                     </form>
                 </Grid>
                 <Grid item sm/>

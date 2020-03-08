@@ -56,7 +56,33 @@ class Signup extends Component {
             errors: {}
         }
     }
-    handleSubmit = (event) => {}
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.setState({
+            loading: true
+        })
+        const userData = {
+            email: this.state.email,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword,
+            handle: this.state.username
+        }
+        // add axios functions
+        axios.post('/signup', userData)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    loading: false
+                })
+                this.props.history.push('/')
+            })
+            .catch(err => {
+                this.setState({
+                    errors: err.respponse.data,
+                    loading: false
+                })
+            })
+    }
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -80,6 +106,7 @@ class Signup extends Component {
                         helperText={errors.confirmPassword} error={errors.confirmPassword ? true : false} className={classes.textField} fullWidth/>
                         <TextField id='username' name='username' type='username' label='Username' value={this.state.username} onChange={this.handleChange}
                         helperText={errors.handle} error={errors.handle ? true : false} className={classes.textField} fullWidth/>
+                        {/* Add wrong credentials */}
                         <Button disabled={loading} type='submit' variant='contained' color='primary' className={classes.button}>Sign Up {loading && (<CircularProgress size={30} className={classes.progress}/>)}</Button>
                         <br />
                         <small>Already have an account ? <Link to='/login'>Sign in here</Link></small>
@@ -89,6 +116,10 @@ class Signup extends Component {
             </Grid>
         )
     }
+}
+
+Signup.propTypes = {
+    classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(Signup)
