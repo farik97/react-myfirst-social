@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import './App.css';
@@ -29,31 +29,33 @@ const token = localStorage.AppIdToken
 if(token) {
     const decodedToken = jwtDecode(token)
     console.log(decodedToken)
-    if(new Date(decodedToken.exp * 1000) < Date.now()){
-        window.location.href = '/login'
-        authenticated = false
+    if (decodedToken.exp * 1000 < Date.now()) {
+      authenticated = false;
+      window.location.href = '/login'
     } else {
       authenticated = true
     }
 }
 
-function App() {
-  return (
-      <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-            <Router>
-              <Navbar/>
-              <div className="container">
-              <Switch>
-                <Route exact path="/" component={home}/>
-                <AuthRoute exact path="/login" component={login} authenticated={authenticated}/>
-                <AuthRoute exact path="/signup" component={signup} authenticated={authenticated}/>
-              </Switch>
-              </div>
-            </Router>
-        </Provider>
-      </MuiThemeProvider>
-  );
+class App extends Component {
+  render(){
+    return (
+        <MuiThemeProvider theme={theme}>
+          <Provider store={store}>
+              <Router>
+                <Navbar/>
+                <div className="container">
+                <Switch>
+                  <Route exact path="/" component={home}/>
+                  <AuthRoute exact path="/login" component={login} authenticated={authenticated}/>
+                  <AuthRoute exact path="/signup" component={signup} authenticated={authenticated}/>
+                </Switch>
+                </div>
+              </Router>
+          </Provider>
+        </MuiThemeProvider>
+    );
+  }
 }
 
 export default App;
