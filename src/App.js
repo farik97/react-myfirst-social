@@ -18,6 +18,7 @@ import store from './redux/store'
 // MUI Stuff
 import {MuiThemeProvider} from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
+import UnAuthRoute from './util/UnAuthRoute';
 
 // my theme
 const theme = createMuiTheme(themeFile);
@@ -31,10 +32,14 @@ if(token) {
     console.log(decodedToken)
     if (decodedToken.exp * 1000 < Date.now()) {
       authenticated = false;
-      window.location.href = '/login'
+      if (window.location.href == '/') {
+        window.location.href = '/login'
+      }
     } else {
       authenticated = true
     }
+} else {
+  authenticated = false
 }
 
 class App extends Component {
@@ -46,7 +51,7 @@ class App extends Component {
                 <Navbar/>
                 <div className="container">
                 <Switch>
-                  <Route exact path="/" component={home}/>
+                  <UnAuthRoute exact path="/" component={home} authenticated={authenticated} />
                   <AuthRoute exact path="/login" component={login} authenticated={authenticated}/>
                   <AuthRoute exact path="/signup" component={signup} authenticated={authenticated}/>
                 </Switch>
